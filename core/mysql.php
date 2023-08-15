@@ -116,6 +116,7 @@
         }
         
         $instrucao = delete($entidade, $coringa_criterio);
+        echo $instrucao;    
         $conexao = conecta();
 
         $stmt = mysqli_prepare($conexao, $instrucao);
@@ -125,7 +126,7 @@
             $comando = 'mysqli_stmt_bind_param($stmt,';
             $comando .= '\'' . implode('', $tipo) . '\',';
             $comando .= '$' . implode(', $', $campos_criterio) . ');';
-        
+            echo $comando;
             eval($comando);
         }
 
