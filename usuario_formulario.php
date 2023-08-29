@@ -23,21 +23,22 @@
                         require_once 'core/sql.php';
                         require_once 'core/mysql.php';
 
-                        if(isset($_SESSION['login'])){
-                            $id = (int) $_SESSION['login'] ['usuario'] ['id'];
+                        if(isset($_SESSION['login']))
+                            {
+                                $id = (int) $_SESSION['login'] ['usuario'] ['id'];
 
-                            $criterio = [
-                                ['id', '=', $id]
-                            ];
+                                $criterio = [
+                                    ['id', '=', $id]
+                                ];
 
-                            $retorno = buscar(
-                                'usuario',
-                                ['id', 'nome', 'email'],
-                                $criterio
-                            );
+                                $retorno = buscar(
+                                    'usuario',
+                                    ['id', 'nome', 'email'],
+                                    $criterio
+                                );
 
-                            $entidade = $retorno[0];
-                        }
+                                $entidade = $retorno[0];
+                            }   
                     ?>
                     <h2>Usuário</h2>
                     <form method="post" action="core/usuario_repositorio.php">

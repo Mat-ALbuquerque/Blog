@@ -36,38 +36,40 @@
                     require_once 'core/conexao_mysql.php';
                     require_once 'core/sql.php';
                     require_once 'core/mysql.php';
-                    foreach($_GET as $indice => $dado){
-                        $$indice = limparDados($dado);
-                    }
-                    $data_atual = date('Y-m-d H:i:s');
-
-                    $criterio = [
-                        ['data_postagem', '<=', $data_atual]
-                    ];
-
-                    if(!empty($busca))
+                    foreach($_GET as $indice => $dado)
                         {
-                            $criterio[] = [
-                              'AND',
-                              'texto',
-                              'like',
-                              "%{busca}%"
-                            ];
+                            $$indice = limparDados($dado);
                         }
 
-                    $posts = buscar(
-                        'post',
-                        [
-                            'titulo',
-                            'data_postagem',
-                            'id',
-                            '(select nome
-                                from usuario
-                                where usuario.id = post.usuario_id) as nome'
-                        ],
-                        $criterio,
-                        'data_postagem DESC'
-                    );
+                        $data_atual = date('Y-m-d H:i:s');
+
+                        $criterio = [
+                            ['data_postagem', '<=', $data_atual]
+                        ];
+
+                        if(!empty($busca))
+                            {
+                                $criterio[] = [
+                                'AND',
+                                'texto',
+                                'like',
+                                "%{busca}%"
+                                ];
+                            }
+
+                        $posts = buscar(
+                            'post',
+                            [
+                                'titulo',
+                                'data_postagem',
+                                'id',
+                                '(select nome
+                                    from usuario
+                                    where usuario.id = post.usuario_id) as nome'
+                            ],
+                            $criterio,
+                            'data_postagem DESC'
+                        );
                 ?>
                 <div>
                     <div class="list-group">
@@ -76,7 +78,8 @@
                                 $data = date_create($post['data_postagem']);
                                 $data = date_format($data, 'd/m/Y H:i:s');
                         ?>
-                        <a href="post_detalhe.php?post=<?php echo $post['id']?>" class="list-group-ite list-group-item-action">
+                        <a href="post_detalhe.php?post=<?php echo $post['id']?>" 
+                            class="list-group-ite list-group-item-action">
                             <strong><?php echo $post['titulo']?></strong>
                             [<?php echo $post['nome']?>]
                             <span class="badge badge-dark"><?php echo $data?></span>

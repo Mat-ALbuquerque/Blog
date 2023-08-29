@@ -14,9 +14,10 @@
                 <?php 
                     include 'includes/topo.php';
                     include 'includes/valida_login.php';
-                    if($_SESSION['login']['usuario']['adm'] !==1){
-                        header('Location: index.php');
-                    }
+                    if($_SESSION['login']['usuario']['adm'] !==1)
+                        {
+                            header('Location: index.php');
+                        }
                 ?>
             </div>
         </div>
@@ -41,22 +42,25 @@
 
                     $criterio = [];
 
-                    if(!empty($busca)){
-                        $criterio[] = ['nome', 'like', "%{$busca}%"];
-                    }
-                    $result = buscar(
-                        'usuario',
-                        [
-                            'id',
-                            'nome',
-                            'email',
-                            'data_criacao',
-                            'ativo',
-                            'adm'
-                        ],
-                        $criterio,
-                        'data_criacao DESC, nome ASC'
-                    );
+                    if(!empty($busca))
+                        {
+                            $criterio[] = ['nome', 'like', "%{$busca}%"];
+                        }
+
+                        $result = buscar(
+                            'usuario',
+                            [
+                                'id',
+                                'nome',
+                                'email',
+                                'data_criacao',
+                                'ativo',
+                                'adm'
+                            ],
+
+                            $criterio,
+                            'data_criacao DESC, nome ASC'
+                        );
                 ?>
                 <table class="table table-bordered table-hover table-striped table-responsive{-sm|-md|-lg|-xl}">
                     <thead>
@@ -78,8 +82,10 @@
                             <td><?php echo $entidade['nome'] ?></td>
                             <td><?php echo $entidade['email'] ?></td>
                             <td><?php echo $data ?></td>
-                            <td><a href='core/usuario_repositorio.php?acao=status&id=<?php echo $entidade['id']?>&valor=<?php echo !$entidade['ativo']?>'><?php echo($entidade['ativo']==1) ? 'Desativar' : 'Ativar'; ?></a></td>
-                            <td><a href='core/usuario_repositorio.php?acao=adm$id=<?php echo $entidade['id']?>&valor=<?php echo !$entidade['adm']?>'><?php echo ($entidade['adm']==1) ? 'Rebaixar' : 'Promover'; ?></a></td>
+                            <td><a href='core/usuario_repositorio.php?acao=status&id=<?php echo $entidade['id']?> 
+                            &valor=<?php echo !$entidade['ativo']?>'><?php echo($entidade['ativo']==1) ? 'Desativar' : 'Ativar'; ?></a></td>
+                            <td><a href='core/usuario_repositorio.php?acao=adm$id=<?php echo $entidade['id']?> 
+                            &valor=<?php echo !$entidade['adm']?>'><?php echo ($entidade['adm']==1) ? 'Rebaixar' : 'Promover'; ?></a></td>
                         </tr>
                         <?php endforeach; ?>
                     </tbody>
