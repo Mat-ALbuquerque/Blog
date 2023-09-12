@@ -69,7 +69,7 @@
                             </textarea>
                         </div>
                         <div class="form-group">
-                            <label for="texto">Postar em</label>
+                            <label for="texto">Data de Postagem</label>
                             <?php
                                 $data = (!empty($entidade['data_postagem']))?
                                     explode(' ', $entidade['data_postagem']) [0] : '';
