@@ -85,7 +85,7 @@
                             <td><?php echo $data ?></td>
                             <td><a href='core/usuario_repositorio.php?acao=status&id=<?php echo $entidade['id']?> 
                             &valor=<?php echo !$entidade['ativo']?>'><?php echo($entidade['ativo']==1) ? 'Desativar' : 'Ativar'; ?></a></td>
-                            <td><a href='core/usuario_repositorio.php?acao=adm$id=<?php echo $entidade['id']?> 
+                            <td><a href='core/usuario_repositorio.php?acao=adm&id=<?php echo $entidade['id']?> 
                             &valor=<?php echo !$entidade['adm']?>'><?php echo ($entidade['adm']==1) ? 'Rebaixar' : 'Promover'; ?></a></td>
                         </tr>
                         <?php endforeach; ?>
